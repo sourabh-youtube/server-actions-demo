@@ -1,42 +1,36 @@
 "use client";
-import { CreateUserForm } from "@/components";
-import { IUser } from "@/server/model/users";
-import { Box, Typography } from "@mui/material";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { postPing } from "./actions/mutation/_ping";
-import { getPing } from "./actions/query/_ping";
+import { Box, Button, Typography } from "@mui/material";
+import Link from "next/link";
 
 export default function Home() {
-  const { data: pingData } = useQuery({
-    queryKey: ["get-ping"],
-    queryFn: async (): Promise<IUser | undefined> => getPing(),
-    refetchOnMount: false,
-  });
-
-  const {
-    data: pingPostData,
-    isPending: pingPostIsPending,
-    isSuccess: pingPostIsSuccess,
-  } = useMutation({
-    mutationKey: ["post-ping"],
-    mutationFn: postPing,
-  });
-
   return (
     <main>
-      <Box>
-        <Typography variant="h5">
-          GET <code>/api/ping</code>
-        </Typography>
-        <Typography variant="body1">{JSON.stringify(pingData)}</Typography>
-      </Box>
-      <br />
-      <Box>
-        <Typography variant="h5">
-          POST <code>/api/ping</code>
-        </Typography>
-        <CreateUserForm />
-        <Typography variant="body1">{JSON.stringify(pingPostData)}</Typography>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        height={"100vh"}
+        gap={4}
+      >
+        <Typography variant="h5">Server Actions Use Case</Typography>
+
+        <Button variant="contained">
+          <Link
+            href="/simple"
+            style={{ textDecoration: "none", color: "white", width: 300 }}
+          >
+            Simple Data Fetching
+          </Link>
+        </Button>
+        <Button variant="contained">
+          <Link
+            href="/formsubmit"
+            style={{ textDecoration: "none", color: "white", width: 300 }}
+          >
+            Form Submission and POST request
+          </Link>
+        </Button>
       </Box>
     </main>
   );

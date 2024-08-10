@@ -26,8 +26,6 @@ export function CreateUserForm() {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
-    setValue,
     watch,
     control,
   } = useForm<UserFormData>({
@@ -125,8 +123,9 @@ export function CreateUserForm() {
           )}
         </FormControl>
 
-        <Button type="submit" variant="contained">
-          {pingPostIsPending && <CircularProgress size={20} />} Submit
+        <Button type="submit" variant="outlined">
+          {pingPostIsPending && <CircularProgress color="primary" size={20} />}{" "}
+          Submit
         </Button>
       </Stack>
     </form>
