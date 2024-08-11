@@ -5,11 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { postPing } from "../actions/mutation/_ping";
 
 export default function Home() {
-  const {
-    data: pingPostData,
-    isPending: pingPostIsPending,
-    isSuccess: pingPostIsSuccess,
-  } = useMutation({
+  const { data: pingPostData } = useMutation({
     mutationKey: ["post-ping"],
     mutationFn: postPing,
   });
@@ -24,8 +20,10 @@ export default function Home() {
         height="100vh"
       >
         <Typography variant="h5">
-          POST <code>/api/ping</code>
+          postPing() emulating (POST) request
         </Typography>
+        <br />
+        <br />
         <CreateUserForm />
         <Typography variant="body1">
           <code>{JSON.stringify(pingPostData, null, 2)}</code>

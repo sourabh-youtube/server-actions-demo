@@ -55,7 +55,10 @@ export function CreateUserForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ backgroundColor: "beige", padding: 40 }}
+    >
       <Stack
         display="flex"
         flexDirection="column"
@@ -123,8 +126,10 @@ export function CreateUserForm() {
           )}
         </FormControl>
 
-        <Button type="submit" variant="outlined">
-          {pingPostIsPending && <CircularProgress color="primary" size={20} />}{" "}
+        <Button type="submit" variant="outlined" disabled={pingPostIsPending}>
+          {pingPostIsPending && (
+            <CircularProgress color="primary" size={20} sx={{ mr: 2 }} />
+          )}
           Submit
         </Button>
       </Stack>
